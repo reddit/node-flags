@@ -1,0 +1,28 @@
+{
+  "name": "feet",
+  "version": "1.0.0",
+  "description": "config goes in, feature-enabled goes out",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajacksified/feet.git"
+  },
+  "keywords": [
+    "feature",
+    "flag",
+    "toggle",
+    "switch",
+    "ab",
+    "a/b",
+    "test"
+  ],
+  "author": "Jack Lawson <ajacksified@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajacksified/feet/issues"
+  },
+  "homepage": "https://github.com/ajacksified/feet#readme"
+}
