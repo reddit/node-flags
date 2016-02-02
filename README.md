@@ -52,6 +52,15 @@ if (featureContext.enabled('oldDesign')) {
 if (featureContext.enabled('newListingStyle')) {
   listing = <Listing2 />;
 }
+
+// Get the list of enabled featues:
+const enabled = featureContext.allEnabled();
+// => ['newListingStyle'];
+
+
+// Or disabled:
+const disabled = featureContext.allDisabled();
+// => ['loggedoutSearch', 'oldDesign'];
 ```
 
 Rules and Configuration
