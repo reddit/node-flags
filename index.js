@@ -70,6 +70,21 @@ class Feet {
     return pass;
   }
 
+  // Loop through all configured features and return a string array of what
+  // features _would_ return true for a given context (or are disabled if
+  // enabled = false.)
+  allEnabled (ctx=this.ctx, enabled=true) {
+    return Object.keys(this.config).filter((configName) => {
+      return this.enabled(configName, ctx) === enabled;
+    });
+  }
+
+  // Loop through all configured features and return a string array of what
+  // features _would not_ return true for a given context.
+  allDisabled (ctx=this.ctx) {
+    return this.allEnabled(ctx, false);
+  }
+
   // Create a new, context-bound feet instance for easy calling later on.
   withContext (ctx) {
     return new Feet(this.config, this.rules, ctx);

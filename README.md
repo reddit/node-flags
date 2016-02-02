@@ -67,6 +67,9 @@ feet configuration and rules are very simple:
   by hanging on to a context-bound instance (
   `featureContext = feature.withContext({ data }); featureContext.enabled('feature')`)
 
+Of note: if a rule is defined in configuration but it is not implemented, it is
+assumed to be false.
+
 You can also parse large objects to handle things such as environment variables.
 To do so, you should have configuration in the format `feature_name`. `feature_`
 will be stripped from the key and lowercased:
@@ -98,3 +101,7 @@ const config = Feet.parseConfig({
 
 // => { flippers: { names: ['bob', 'jane'] } };
 ```
+
+You can also retrieve a list of all currently enabled or disabled rules for a
+given context by calling `feature.allEnabled` or `feature.allDisabled`. These
+can be called with a context passed in, or else will use a bound context.

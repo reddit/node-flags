@@ -104,6 +104,66 @@ describe('Feet', () => {
       const enabled = feet.enabled('test');
       expect(enabled).to.be.true;
     });
+
+    it('returns a list of all enabled features', () => {
+      const config = {
+        test1: true,
+        test2: true,
+        test3: false,
+      };
+
+      const feet = new Feet(config);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test1', 'test2']);
+    });
+
+    it('returns a list of all enabled features for a given context', () => {
+      const config = {
+        test1: { isHamster: true },
+        test2: { isHamster: true },
+        test3: { isHamster: false },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test1', 'test2']);
+    });
+
+    it('returns a list of all disabled features', () => {
+      const config = {
+        test1: true,
+        test2: true,
+        test3: false,
+      };
+
+      const feet = new Feet(config);
+      const enabled = feet.allDisabled();
+      expect(enabled).to.deep.equal(['test3']);
+    });
+
+    it('returns a list of all disabled features for a given context', () => {
+      const config = {
+        test1: { isHamster: true },
+        test2: { isHamster: true },
+        test3: { isHamster: false },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allDisabled();
+      expect(enabled).to.deep.equal(['test3']);
+    });
   });
 
   describe('static helpers', () => {
