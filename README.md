@@ -3,7 +3,7 @@ feet
 
 A simple feature flagging library.
 
-`feet` lets you quickly switch features on or off based on a context. This is
+__feet__ lets you quickly switch features on or off based on a context. This is
 useful to test features for specific users (such as flagging on new funtionality
 in a web application by reading the response context), dark-launching code,
 and a/b testing.
@@ -66,7 +66,7 @@ const disabled = featureContext.allDisabled();
 Rules and Configuration
 -----------------------
 
-feet configuration and rules are very simple:
+__feet__ configuration and rules are very simple:
 
 * Define a name for your features; such as `'loggedoutSearch'` or `'oldDesign'` as above. These
   will be the basis if your config and your feature flags for later on.
