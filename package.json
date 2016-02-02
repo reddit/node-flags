@@ -1,6 +1,6 @@
 {
   "name": "feet",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "config goes in, feature-enabled goes out",
   "main": "index.js",
   "scripts": {
