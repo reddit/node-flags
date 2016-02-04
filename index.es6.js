@@ -66,7 +66,7 @@ class Feet {
       return this.rules[r].call(ctx, config[r]);
     });
 
-    // Return whether any of the ruels failed
+    // Return whether any of the rules failed
     return pass;
   }
 

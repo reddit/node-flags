@@ -3,7 +3,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 
-import Feet from '../index';
+import Feet from '../index.es6.js';
 
 const expect = chai.expect;
 chai.use(sinonChai);
