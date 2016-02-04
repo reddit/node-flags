@@ -5,6 +5,8 @@ A simple feature flagging library.
 
 100 lines of code, no dependencies. Written in ES6+.
 
+[![Build Status](https://travis-ci.org/reddit/feet.svg?branch=master)](https://travis-ci.org/reddit/feet)
+
 __feet__ lets you quickly switch features on or off based on a context. This is
 useful to test features for specific users (such as flagging on new funtionality
 in a web application by reading the response context), dark-launching code,
