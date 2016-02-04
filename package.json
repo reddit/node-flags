@@ -4,7 +4,8 @@
   "description": "config goes in, feature-enabled goes out",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",

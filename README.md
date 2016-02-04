@@ -3,6 +3,8 @@ feet
 
 A simple feature flagging library.
 
+100 lines of code, no dependencies. Written in ES6+.
+
 __feet__ lets you quickly switch features on or off based on a context. This is
 useful to test features for specific users (such as flagging on new funtionality
 in a web application by reading the response context), dark-launching code,
@@ -114,3 +116,22 @@ const config = Feet.parseConfig({
 You can also retrieve a list of all currently enabled or disabled rules for a
 given context by calling `feature.allEnabled` or `feature.allDisabled`. These
 can be called with a context passed in, or else will use a bound context.
+
+Development
+-----------
+
+__feet__ is an ES6 library. Take a look at the `.babelrc` file to see what
+presets we're using.
+
+To get started:
+
+* With node installed,
+* Fork __feet__
+* Clone your fork to your machine
+* Run `npm install` to install dev dependencies (there are no regular
+  dependencies; dependencies are for testing and running.)
+* Write features, and run `npm test` and `npm run lint`. Feature changes should
+  have tests! For ease of use, install `eslint` for your favorite editor.
+* Check out `CONTRIBUTING.md` for more detailed info.
+
+feet is MIT licensed. copyright 2016 reddit. See LICENSE for more info.
