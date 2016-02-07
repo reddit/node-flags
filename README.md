@@ -8,7 +8,7 @@ A simple feature flagging library.
 [![Build Status](https://travis-ci.org/reddit/feet.svg?branch=master)](https://travis-ci.org/reddit/feet)
 
 __feet__ lets you quickly switch features on or off based on a context. This is
-useful to test features for specific users (such as flagging on new funtionality
+useful to test features for specific users (such as flagging on new functionality
 in a web application by reading the response context), dark-launching code,
 and a/b testing.
 
