@@ -119,6 +119,11 @@ You can also retrieve a list of all currently enabled or disabled rules for a
 given context by calling `feature.allEnabled` or `feature.allDisabled`. These
 can be called with a context passed in, or else will use a bound context.
 
+Sometimes, for testing, it's nice to clone an instance that doesn't use the
+original rules and configuration by reference. You can call
+`feetinstance.clone()` to return a new feet instance with shallow copies of
+the config, rules, and context.
+
 Development
 -----------
 

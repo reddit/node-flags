@@ -202,4 +202,24 @@ describe('Feet', () => {
       expect(Feet.parseConfig(config, customparse)).deep.equal(expectedConfig);
     });
   });
+
+  describe('cloning', () => {
+    it('can clone itself by shallow copy of config, rules, and ctx', () => {
+      const config = { test: { rule: true } };
+      const rules = { rule: sinon.spy() };
+      const ctx = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, ctx);
+      const newfeet = feet.clone();
+
+      expect(feet.config).to.not.equal(newfeet.config);
+      expect(feet.config).to.deep.equal(newfeet.config);
+
+      expect(feet.rules).to.not.equal(newfeet.rules);
+      expect(feet.rules).to.deep.equal(newfeet.rules);
+
+      expect(feet.ctx).to.not.equal(newfeet.ctx);
+      expect(feet.ctx).to.deep.equal(newfeet.ctx);
+    });
+  });
 });

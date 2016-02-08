@@ -89,6 +89,10 @@ class Feet {
   withContext (ctx) {
     return new Feet(this.config, this.rules, ctx);
   }
+
+  clone (config=this.config, rules=this.rules, ctx=this.ctx) {
+    return new Feet({ ...config}, { ...rules }, { ...ctx });
+  }
 }
 
 export default Feet;
