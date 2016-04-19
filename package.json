@@ -1,6 +1,6 @@
 {
-  "name": "feet",
-  "version": "1.2.0",
+  "name": "@r/flags",
+  "version": "1.2.1",
   "description": "config goes in, feature-enabled goes out",
   "main": "index.es6.js",
   "scripts": {
