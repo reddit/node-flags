@@ -1,20 +1,20 @@
-feet
+flags
 ====
 
 A simple feature flagging library.
 
 100 lines of code, no dependencies. Written in ES6+.
 
-[![Build Status](https://travis-ci.org/reddit/feet.svg?branch=master)](https://travis-ci.org/reddit/feet)
+[![Build Status](https://travis-ci.org/reddit/flags.svg?branch=master)](https://travis-ci.org/reddit/flags)
 
-__feet__ lets you quickly switch features on or off based on a context. This is
+__flags__ lets you quickly switch features on or off based on a context. This is
 useful to test features for specific users (such as flagging on new functionality
 in a web application by reading the response context), dark-launching code,
 and a/b testing.
 
 ```javascript
 // Import it!
-import Feet from 'feet';
+import Flags from 'flags';
 
 // Set up your experiment config!
 const config = {
@@ -23,7 +23,7 @@ const config = {
   newListingStyle: { users: ['ajacksified'] },
 };
 
-const feature = new Feet(config);
+const feature = new Flags(config);
 
 // Add rules!
 feature.addRule('loggedin', function(val) { return this.loggedin === val; });
@@ -35,11 +35,11 @@ const userData = {
   username: 'ajacksified',
 };
 
-// For ease of use, build a context-bound feet instance. (Alternatively, you
+// For ease of use, build a context-bound flags instance. (Alternatively, you
 // could call `feature.on(rule, context)` instead.)
 const featureContext = feature.withContext(userData);
 
-// Build your UI with a Feet context bound to userdata!
+// Build your UI with a Flags context bound to userdata!
 
 // false (loggedin is true, but the config wants false)
 if (featureContext.enabled('loggedoutSearch')) {
@@ -70,7 +70,7 @@ const disabled = featureContext.allDisabled();
 Rules and Configuration
 -----------------------
 
-__feet__ configuration and rules are very simple:
+__flags__ configuration and rules are very simple:
 
 * Define a name for your features; such as `'loggedoutSearch'` or `'oldDesign'` as above. These
   will be the basis if your config and your feature flags for later on.
@@ -88,9 +88,9 @@ To do so, you should have configuration in the format `feature_name`. `feature_`
 will be stripped from the key and lowercased:
 
 ```javascript
-import Feet from feet;
+import Flags from flags;
 
-const config = Feet.parseConfig({
+const config = Flags.parseConfig({
   something: 'wut',
   feature_flippers: { names: ['bob', 'jane'] }
 });
@@ -102,9 +102,9 @@ You can supply your own function, too, and customize both key and value. In
 this example, we'll expect things to start with `f_` instead of `feature_`.
 
 ```javascript
-import Feet from feet;
+import Flags from flags;
 
-const config = Feet.parseConfig({
+const config = Flags.parseConfig({
   something: 'wut',
   f_flippers: { names: ['bob', 'jane'] }
 }, function(key, val) {
@@ -121,19 +121,19 @@ can be called with a context passed in, or else will use a bound context.
 
 Sometimes, for testing, it's nice to clone an instance that doesn't use the
 original rules and configuration by reference. You can call
-`feetinstance.clone()` to return a new feet instance with shallow copies of
+`flagsinstance.clone()` to return a new flags instance with shallow copies of
 the config, rules, and context.
 
 Development
 -----------
 
-__feet__ is an ES6 library. Take a look at the `.babelrc` file to see what
+__flags__ is an ES6 library. Take a look at the `.babelrc` file to see what
 presets we're using.
 
 To get started:
 
 * With node installed,
-* Fork __feet__
+* Fork __flags__
 * Clone your fork to your machine
 * Run `npm install` to install dev dependencies (there are no regular
   dependencies; dependencies are for testing and running.)
@@ -141,4 +141,4 @@ To get started:
   have tests! For ease of use, install `eslint` for your favorite editor.
 * Check out `CONTRIBUTING.md` for more detailed info.
 
-feet is MIT licensed. copyright 2016 reddit. See LICENSE for more info.
+flags is MIT licensed. copyright 2016 reddit. See LICENSE for more info.

@@ -1,7 +1,7 @@
-Contributing to feet
+Contributing to flags
 ====================
 
-So you want to contribute to feet? Fantastic! Here's a brief overview on
+So you want to contribute to flags? Fantastic! Here's a brief overview on
 how best to do so.
 
 ## What to change
@@ -14,7 +14,7 @@ Here's some examples of things you might want to make a pull request for:
 
 If you have a more deeply-rooted problem with how the program is built or some
 of the stylistic decisions made in the code, it's best to
-[create an issue](https://github.com/ajacksified/feet/issues) before putting
+[create an issue](https://github.com/reddit/flags/issues) before putting
 the effort into a pull request. The same goes for new features - it is
 best to check the project's direction, existing pull requests, and currently open
 and closed issues first.
@@ -25,7 +25,7 @@ and closed issues first.
 * Semicolons are not optional
 * All pages should render on the server and the client. The site should be
   usable without javascript.
-* Review our [style guide](https://github.com/ajacksified/tree/master/javascript) for
+* Review our [style guide](https://github.com/reddit/tree/master/javascript) for
   more information.
 * Use the .eslint file here to make things go smoothly!
 
@@ -35,7 +35,7 @@ be found in the README.
 
 ## Using Git appropriately
 
-1. [Fork the repository](https://github.com/ajacksified/feet/fork_select) to
+1. [Fork the repository](https://github.com/reddit/flags/fork_select) to
   your Github account.
 2. Create a *topical branch* - a branch whose name is succint but explains what
   you're doing, such as "change-orangered-to-periwinkle"
@@ -48,5 +48,5 @@ Please make separate branches for unrelated changes!
 
 ## Licensing
 
-feet is MIT licensed. See details in the LICENSE file. This is a very permissive
+flags is MIT licensed. See details in the LICENSE file. This is a very permissive
 scheme, GPL-compatible but without many of the restrictions of GPL.

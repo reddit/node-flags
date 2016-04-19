@@ -1,13 +1,13 @@
 const DEFAULT_FEATURE_PARSE_PREFIX = 'feature_';
 
-class Feet {
+class Flags {
   // Default the context to empty, for sanity.
   ctx = {};
 
   // helper to make loading config easier. Take config, only load keys
   // beginning with feature_, and lowercase. The parsing function is
   // overridable.
-  static parseConfig (config, parsefn=Feet.parse) {
+  static parseConfig (config, parsefn=Flags.parse) {
     return Object.keys(config).reduce((o, key) => {
       const parsed = parsefn(key, config[key]);
 
@@ -41,7 +41,7 @@ class Feet {
     this.rules[name] = fn;
   }
 
-  // Check if your feet are on a thing
+  // Check if your flags are on a thing
   enabled (name, ctx=this.ctx) {
     const config = this.config[name];
 
@@ -85,14 +85,14 @@ class Feet {
     return this.allEnabled(ctx, false);
   }
 
-  // Create a new, context-bound feet instance for easy calling later on.
+  // Create a new, context-bound flags instance for easy calling later on.
   withContext (ctx) {
-    return new Feet(this.config, this.rules, ctx);
+    return new Flags(this.config, this.rules, ctx);
   }
 
   clone (config=this.config, rules=this.rules, ctx=this.ctx) {
-    return new Feet({ ...config}, { ...rules }, { ...ctx });
+    return new Flags({ ...config}, { ...rules }, { ...ctx });
   }
 }
 
-export default Feet;
+export default Flags;
