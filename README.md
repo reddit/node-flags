@@ -14,7 +14,7 @@ and a/b testing.
 
 ```javascript
 // Import it!
-import Flags from 'flags';
+import Flags from '@r/flags';
 
 // Set up your experiment config!
 const config = {
@@ -128,7 +128,8 @@ Development
 -----------
 
 __flags__ is an ES6 library. Take a look at the `.babelrc` file to see what
-presets we're using.
+presets we're using. To import it in ES5, use
+`var Flags = require ('@r/flags').default;`.
 
 To get started:
 
