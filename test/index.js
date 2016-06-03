@@ -164,6 +164,146 @@ describe('Feet', () => {
       const enabled = feet.allDisabled();
       expect(enabled).to.deep.equal(['test3']);
     });
+
+    it('supports explicit "or" rules', () => {
+      const config = {
+        test1: {
+          or: [
+            { isHamster: true },
+            { isDog: true },
+          ]
+        },
+        test2: {
+          or: [
+            { isHamster: true },
+            { isDog: false },
+          ]
+        },
+        test3: {
+          or: [
+            { isHamster: false },
+            { isDog: false }
+          ]
+        },
+        test4: {
+          or: [
+            { isHamster: false },
+            { isDog: true },
+          ]
+        },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+        isDog (b) { return (this.name === 'dog') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test1', 'test2', 'test3']);
+    });
+
+    it('supports "and" rules', () => {
+      const config = {
+        test1: {
+          and: [
+            { isHamster: true },
+            { isDog: true },
+          ]
+        },
+        test2: {
+          and: [
+            { isHamster: true },
+            { isDog: false },
+          ]
+        },
+        test3: {
+          and: [
+            { isHamster: false },
+            { isDog: false },
+          ]
+        },
+        test4: {
+          and: [
+            { isHamster: false },
+            { isDog: true },
+          ]
+        },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+        isDog (b) { return (this.name === 'dog') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test2']);
+    });
+
+    it('supports "not" rules', () => {
+      const config = {
+        test1: { not: { isHamster: true } },
+        test2: { not: { isHamster: false } },
+        test3: {
+          not: {
+            isHamster: false,
+            isDog: false
+          },
+        },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+        isDog (b) { return (this.name === 'dog') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test2']);
+    });
+
+    it('supports nested boolean operator rules', () => {
+      const config = {
+        test1: {
+          and: [
+            { isHamster: true },
+            { not: { isDog: true } },
+          ]
+        },
+        test2: {
+          and: [
+            {
+              or: [
+                { isHamster: true },
+                { isHamster: false },
+              ],
+              and: [
+                { isHamster: true },
+                { isDog: false },
+              ],
+            }
+          ]
+        },
+      };
+
+      const rules = {
+        isHamster (b) { return (this.name === 'hamster') === b; },
+        isDog (b) { return (this.name === 'dog') === b; },
+      };
+
+      const context = { name: 'hamster' };
+
+      const feet = new Feet(config, rules, context);
+      const enabled = feet.allEnabled();
+      expect(enabled).to.deep.equal(['test1', 'test2']);
+    });
   });
 
   describe('static helpers', () => {

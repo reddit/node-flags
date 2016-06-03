@@ -83,6 +83,21 @@ __flags__ configuration and rules are very simple:
 Of note: if a rule is defined in configuration but it is not implemented, it is
 assumed to be false.
 
+Three special "pseudo-rules" implement boolean operators: `and`, `or`, and
+`not`, so that rules may stay simple and general and be combined in useful
+ways. For example:
+
+```javascript
+const config = {
+  friend: {
+    and: [
+      { or: [ { type: 'cyborg' }, { type: 'human' } ] },
+      { not: { role: 'supervillain' } }
+    ]
+  }
+};
+```
+
 You can also parse large objects to handle things such as environment variables.
 To do so, you should have configuration in the format `feature_name`. `feature_`
 will be stripped from the key and lowercased:

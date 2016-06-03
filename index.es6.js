@@ -41,6 +41,39 @@ class Flags {
     this.rules[name] = fn;
   }
 
+  testRule (config, rule, ctx) {
+    // If there's no rule, check for boolean operator pseudo-rules.
+    if (!this.rules[rule]) {
+      return this.tryBooleanOps(config, rule, ctx);
+    }
+
+    // If there is a rule, return if it failed.
+    return this.rules[rule].call(ctx, config[rule]);
+  };
+
+  // Check for boolean operator pseudo-rules.
+  tryBooleanOps (config, rule, ctx) {
+    if (rule === 'or') {
+      return config[rule].some(subConfig =>
+        Object.keys(subConfig).some(subRule => this.testRule(subConfig, subRule, ctx))
+      )
+    }
+
+    if (rule === 'and') {
+      return config[rule].every(subConfig =>
+        Object.keys(subConfig).some(subRule => this.testRule(subConfig, subRule, ctx))
+      )
+    }
+
+    if (rule === 'not') {
+      const subConfig = config[rule];
+      return !(Object.keys(subConfig).some(subRule => this.testRule(subConfig, subRule, ctx)));
+    }
+
+    // Otherwise, return false.
+    return false;
+  }
+
   // Check if your flags are on a thing
   enabled (name, ctx=this.ctx) {
     const config = this.config[name];
@@ -58,13 +91,7 @@ class Flags {
 
     // Check if any of the rules fail. Use `find`, which exits as immiediately
     // as possible.
-    const pass = rules.some((r) => {
-      // If there's no rule, assume false.
-      if (!this.rules[r]) { return false; }
-
-      // If there is a rule, return if it failed.
-      return this.rules[r].call(ctx, config[r]);
-    });
+    const pass = rules.some((r) => this.testRule(config, r, ctx));
 
     // Return whether any of the rules failed
     return pass;
